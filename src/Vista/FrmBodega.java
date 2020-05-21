@@ -28,6 +28,7 @@ public class FrmBodega extends javax.swing.JFrame {
 
         controlador = new ControladorProducto();
         controlador1 = new CtlBodega();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,15 +45,10 @@ public class FrmBodega extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        txtCodigoProducto = new javax.swing.JTextField();
-        txtNombreProducto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -71,17 +67,6 @@ public class FrmBodega extends javax.swing.JFrame {
         jLabel4.setText("direccion");
 
         jLabel5.setText("telefono");
-
-        jLabel6.setText("codigo producto");
-
-        jLabel7.setText("nombre");
-
-        jButton1.setText("buscar producto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setText("guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -140,21 +125,13 @@ public class FrmBodega extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(45, 45, 45)
+                            .addComponent(jLabel5))
+                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(txtNombre)
                             .addComponent(txtDireccion)
-                            .addComponent(txtTelefono)
-                            .addComponent(txtCodigoProducto)
-                            .addComponent(txtNombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton7)))
+                            .addComponent(txtTelefono)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2)
@@ -165,8 +142,10 @@ public class FrmBodega extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,22 +170,13 @@ public class FrmBodega extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,90 +193,69 @@ public class FrmBodega extends javax.swing.JFrame {
         String nombre, direccion, telefono;
 
         codigo = Integer.parseInt(txtCodigo.getText());
-        productoBodega = Integer.parseInt(txtCodigoProducto.getText());
         nombre = txtNombre.getText();
         direccion = txtDireccion.getText();
         telefono = txtTelefono.getText();
-        
-        if(txtCodigo.equals("") || txtCodigoProducto.equals("") || txtNombre.equals("") || txtDireccion.equals("") ||
-                txtTelefono.equals("")){
+
+        if (txtCodigo.equals("") || txtNombre.equals("") || txtDireccion.equals("")
+                || txtTelefono.equals("")) {
             JOptionPane.showMessageDialog(null, "ingrese los datos");
-        }else{
-            try{
-                controlador1.guardarProducto(new Bodega(codigo, productoBodega, nombre, direccion, telefono));
+        } else {
+            try {
+                controlador1.guardarProducto(new Bodega(codigo, nombre, direccion, telefono));
                 JOptionPane.showMessageDialog(null, "Se a agregado correctamente");
                 limpiar();
-          
-                
-            }catch (Exception e) {
+
+            } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-
-        
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int id;
-
-        id = Integer.parseInt(JOptionPane.showInputDialog("ingrese el codigo del producto"));
-
-        Producto pro = controlador.buscarProducto(id);
-
-        txtCodigoProducto.setText(pro.getCodigo() + "");
-        txtNombreProducto.setText(pro.getNombre());
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         int id = Integer.parseInt(txtCodigo.getText());
-        
-        if(txtCodigo.equals("")){
+
+        if (txtCodigo.equals("")) {
             JOptionPane.showMessageDialog(null, "por favor busque una bodega con codigo");
-        }else{
-            try{
+        } else {
+            try {
                 Bodega bo = controlador1.buscarProducto(id);
 
-               txtCodigoProducto.setText(bo.getProductoBodega() + "");
-               txtDireccion.setText(bo.getDireccion());
-               txtNombre.setText(bo.getNombre());
-               txtTelefono.setText(bo.getTelefono());
-                
-            }catch (Exception e) {
+                txtDireccion.setText(bo.getDireccion());
+                txtNombre.setText(bo.getNombre());
+                txtTelefono.setText(bo.getTelefono());
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
-        
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-           int codigo, productoBodega;
+        int codigo;
         String nombre, direccion, telefono;
 
         codigo = Integer.parseInt(txtCodigo.getText());
-        productoBodega = Integer.parseInt(txtCodigoProducto.getText());
         nombre = txtNombre.getText();
         direccion = txtDireccion.getText();
         telefono = txtTelefono.getText();
-        
-        if(txtCodigo.equals("") || txtCodigoProducto.equals("") || txtNombre.equals("") || txtDireccion.equals("") ||
-                txtTelefono.equals("")){
+
+        if (txtCodigo.equals("") || txtNombre.equals("") || txtDireccion.equals("")
+                || txtTelefono.equals("")) {
             JOptionPane.showMessageDialog(null, "ingrese los datos");
-        }else{
-            try{
-                controlador1.editarProducto(new Bodega(codigo, productoBodega, nombre, direccion, telefono));
+        } else {
+            try {
+                controlador1.editarProducto(new Bodega(codigo, nombre, direccion, telefono));
                 JOptionPane.showMessageDialog(null, "Se a modifico correctamente");
                 limpiar();
-          
-                
-            }catch (Exception e) {
+
+            } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
@@ -315,21 +264,21 @@ public class FrmBodega extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int id = Integer.parseInt(txtCodigo.getText());
-        
-        if(txtCodigo.equals("")){
+
+        if (txtCodigo.equals("")) {
             JOptionPane.showMessageDialog(null, "por favor busque una bodega con codigo");
-        }else{
-            try{
+        } else {
+            try {
                 controlador1.eliminarProveedor(id);
                 JOptionPane.showMessageDialog(null, "se elimino correctamente");
                 limpiar();
-                
-            }catch (Exception e) {
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -341,10 +290,8 @@ public class FrmBodega extends javax.swing.JFrame {
     public void limpiar() {
 
         txtCodigo.setText("");
-        txtCodigoProducto.setText("");
         txtDireccion.setText("");
         txtNombre.setText("");
-        txtNombreProducto.setText("");
         txtTelefono.setText("");
     }
 
@@ -384,7 +331,6 @@ public class FrmBodega extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -396,13 +342,9 @@ public class FrmBodega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCodigoProducto;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

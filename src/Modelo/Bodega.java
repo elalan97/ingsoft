@@ -11,15 +11,14 @@ package Modelo;
  */
 public class Bodega {
 
-    int codigo, productoBodega;
+    int codigo;
     String nombre, direccion, telefono;
 
     public Bodega() {
     }
 
-    public Bodega(int codigo, int productoBodega, String nombre, String direccion, String telefono) {
+    public Bodega(int codigo, String nombre, String direccion, String telefono) {
         this.codigo = codigo;
-        this.productoBodega = productoBodega;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -31,14 +30,6 @@ public class Bodega {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public int getProductoBodega() {
-        return productoBodega;
-    }
-
-    public void setProductoBodega(int productoBodega) {
-        this.productoBodega = productoBodega;
     }
 
     public String getNombre() {
@@ -64,7 +55,7 @@ public class Bodega {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     
     
 }

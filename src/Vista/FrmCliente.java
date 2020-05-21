@@ -5,8 +5,10 @@
  */
 package Vista;
 
+import Controlador.ControladorLogin;
 import Controlador.CtlCliente;
 import Modelo.Cliente;
+import Modelo.Login;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
 public class FrmCliente extends javax.swing.JFrame {
 
     CtlCliente controlador;
+    ControladorLogin controlador1;
 
     /**
      * Creates new form FrmCliente
@@ -24,6 +27,8 @@ public class FrmCliente extends javax.swing.JFrame {
         initComponents();
 
         controlador = new CtlCliente();
+        controlador1 = new ControladorLogin();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -206,6 +211,7 @@ public class FrmCliente extends javax.swing.JFrame {
         }else{
             try{
          controlador.guardarCliente(new Cliente(cedula, nombre, apellido, direccion, telefono));
+         controlador1.guardarUsuario(new Login(nombre, cedula, "cliente"));
          JOptionPane.showMessageDialog(null, "Se a agregado correctamente");
         limpiar();
             }catch (Exception e) {

@@ -20,22 +20,22 @@ public class CtlVendedor {
     BoVendedor bo;
 
     public CtlVendedor() {
-        
+
         bo = new BoVendedor();
     }
 
-    public void guardarCliente(Vendedor vendedor, String Nombre) throws YaExisteProducto {
+    public void guardarCliente(Vendedor vendedor) throws YaExisteProducto {
 
-        bo.guardar(vendedor, Nombre);
+        bo.guardar(vendedor);
     }
 
     public Vendedor buscarCliente(int codigo) throws NoExisteProducto {
         return bo.buscar(codigo);
     }
 
-    public void editarCliente(Vendedor vendedor, String Nombre) throws NoExisteProducto {
+    public void editarCliente(Vendedor vendedor) throws NoExisteProducto {
 
-        bo.editar(vendedor, Nombre);
+        bo.editar(vendedor);
     }
 
     public void eliminarCliente(int codigo) throws NoExisteProducto {
@@ -46,5 +46,9 @@ public class CtlVendedor {
     public ArrayList<Vendedor> listarCliente() {
 
         return bo.listarVendedor();
+    }
+
+    public Vendedor buscarVendedor(String cedula) throws NoExisteProducto {
+        return bo.buscarVendedor(cedula);
     }
 }

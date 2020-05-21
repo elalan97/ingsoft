@@ -3,36 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package DTO;
 
 /**
  *
  * @author ALAN
  */
-public class Vendedor {
+public class PedidoDTO {
+    int codigo, total;
+    String cedula, nombre, apellido;
 
-    int id, codigo;
-    String cedula, nombre, apellido, direccion, telefono;
-
-    public Vendedor() {
+    public PedidoDTO() {
     }
 
-    public Vendedor(int id, int codigo, String cedula, String nombre, String apellido, String direccion, String telefono) {
-        this.id = id;
+    public PedidoDTO(int codigo, int total, String cedula, String nombre, String apellido) {
         this.codigo = codigo;
+        this.total = total;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.direccion = direccion;
-        this.telefono = telefono;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCodigo() {
@@ -41,6 +30,14 @@ public class Vendedor {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public String getCedula() {
@@ -66,22 +63,6 @@ public class Vendedor {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-
+    
+    
 }

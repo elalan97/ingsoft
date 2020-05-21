@@ -32,6 +32,7 @@ public class FrmProvedorDucto extends javax.swing.JFrame {
         controlador = new CtlProvedorProducto();
         controlador1 = new ControladorProducto();
         controlador2 = new ControladorProveedor();
+        setLocationRelativeTo(null);
     }
 
     /**

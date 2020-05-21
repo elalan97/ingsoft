@@ -25,6 +25,7 @@ public class FrmListarBodega extends javax.swing.JFrame {
     public FrmListarBodega() {
         initComponents();
         controlador = new CtlBodega();
+        setLocationRelativeTo(null);
         listar();
 
     }
@@ -37,7 +38,7 @@ public class FrmListarBodega extends javax.swing.JFrame {
         
         for (Bodega bodega : lista) {
             modelo.addRow(new Object[]{bodega.getCodigo(), bodega.getNombre(), bodega.getDireccion(),
-            bodega.getTelefono(), bodega.getProductoBodega()});
+            bodega.getTelefono()});
         }
         
     }
@@ -59,13 +60,13 @@ public class FrmListarBodega extends javax.swing.JFrame {
 
         tbBodega.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "codigo", "nombre", "direccion", "telefono", "codigo del producto"
+                "codigo", "nombre", "direccion", "telefono"
             }
         ));
         jScrollPane1.setViewportView(tbBodega);

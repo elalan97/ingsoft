@@ -18,7 +18,7 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public static String nombreUser;
+    public static String cedula;
     ControladorLogin controlador;
 
     public FrmLogin() {
@@ -123,7 +123,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         nombreUsuario = txtUsuario.getText();
         contraseña = pwdContraseña.getText();
-        nombreUser = nombreUsuario;
+        cedula = contraseña;
 
         if (nombreUsuario.isEmpty() || contraseña.isEmpty()) {
 

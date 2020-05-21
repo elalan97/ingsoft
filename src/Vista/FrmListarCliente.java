@@ -24,7 +24,9 @@ public class FrmListarCliente extends javax.swing.JFrame {
     public FrmListarCliente() {
         initComponents();
         controlador = new CtlCliente();
+        setLocationRelativeTo(null);
         listar();
+        
     }
 
     /**

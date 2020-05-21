@@ -12,6 +12,7 @@ import Modelo.Proveedor;
 import Vista.FrmVendedor;
 
 import Vista.InicioAdmin;
+import Vista.inicioVendedor;
 
 /**
  *
@@ -40,6 +41,11 @@ public class BoLogin {
 
                 FrmVendedor event = new FrmVendedor();
                 event.setVisible(true);
+            }else if (log.getTipoUsuario().equals("vendedor")) {
+                inicioVendedor event = new inicioVendedor();
+                event.setVisible(true);
+            }else if(log.getTipoUsuario().equals("cliente")){
+                
             }
 
         } else {

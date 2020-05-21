@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControladorLogin;
 import Controlador.CtlVendedor;
 import Modelo.Login;
 import Modelo.Vendedor;
@@ -20,19 +21,17 @@ public class FrmVendedor extends javax.swing.JFrame {
      * Creates new form FrmVendedor
      */
     CtlVendedor controlador;
+    ControladorLogin controlador1;
 
     public FrmVendedor() {
         initComponents();
-        llenarLabel();
 
         controlador = new CtlVendedor();
+        controlador1 = new ControladorLogin();
+        setLocationRelativeTo(null);
 
     }
 
-    public void llenarLabel() {
-
-        lbUser.setText(FrmLogin.nombreUser);
-    }
 
     public void limpiar() {
 
@@ -53,8 +52,6 @@ public class FrmVendedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        lbUser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,10 +73,6 @@ public class FrmVendedor extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("usuario:");
-
-        lbUser.setText("jLabel2");
 
         jLabel2.setText("Codigo");
 
@@ -142,52 +135,48 @@ public class FrmVendedor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtCedula)
-                            .addComponent(txtNombre)
-                            .addComponent(txtApellido)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(73, 73, 73)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCodigo)
+                                    .addComponent(txtCedula)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtApellido)
+                                    .addComponent(txtDireccion)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbUser)
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
+                        .addGap(159, 159, 159)
+                        .addComponent(jLabel3)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lbUser)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -263,14 +252,14 @@ public class FrmVendedor extends javax.swing.JFrame {
         apellido = txtApellido.getText();
         direccion = txtDireccion.getText();
         telefono = txtTelefono.getText();
-        nombreUser = lbUser.getText();
         
         if(txtCedula.equals("") || txtCedula.equals("") || txtNombre.equals("") || txtApellido.equals("") ||
                 txtDireccion.equals("") || txtTelefono.equals("") ){
              JOptionPane.showMessageDialog(null, "ingrese los datos");
         }else{
             try{
-                controlador.guardarCliente(new Vendedor(codigo, cedula, nombre, apellido, direccion, telefono, ""), nombreUser);
+                controlador.guardarCliente(new Vendedor(0, codigo, cedula, nombre, apellido, direccion, telefono));
+                controlador1.guardarUsuario(new Login(nombre, cedula, "vendedor"));
                 JOptionPane.showMessageDialog(null, "Se a agregado corrextamente");
                 limpiar();
             }catch (Exception e) {
@@ -314,14 +303,13 @@ public class FrmVendedor extends javax.swing.JFrame {
         apellido = txtApellido.getText();
         direccion = txtDireccion.getText();
         telefono = txtTelefono.getText();
-        nombreUser = lbUser.getText();
         
         if(txtCedula.equals("") || txtCedula.equals("") || txtNombre.equals("") || txtApellido.equals("") ||
                 txtDireccion.equals("") || txtTelefono.equals("") ){
              JOptionPane.showMessageDialog(null, "ingrese los datos");
         }else{
             try{
-                controlador.editarCliente(new Vendedor(codigo, cedula, nombre, apellido, direccion, telefono, ""), nombreUser);
+                controlador.editarCliente(new Vendedor(0, codigo, cedula, nombre, apellido, direccion, telefono));
                 JOptionPane.showMessageDialog(null, "Se a modificado corrextamente");
                 limpiar();
             }catch (Exception e) {
@@ -379,7 +367,6 @@ public class FrmVendedor extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -387,7 +374,6 @@ public class FrmVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lbUser;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCodigo;

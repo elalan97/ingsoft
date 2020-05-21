@@ -27,7 +27,7 @@ public class BoVendedor {
         dao = new VendedorDAO();
     }
 
-    public void guardar(Vendedor vendedor, String Nombre) {
+    public void guardar(Vendedor vendedor) {
 
         Vendedor ve = dao.buscarVendedor(vendedor.getCodigo());
 
@@ -38,10 +38,6 @@ public class BoVendedor {
                 throw new YaExisteVendedor();
             }
         }
-        
-        Proveedor pro = dao.buscarProveedor(Nombre);
-        
-        vendedor.setCedulaProveedor(pro.getCedula());
 
         dao.guardarVendedor(vendedor);
 
@@ -62,11 +58,7 @@ public class BoVendedor {
 
     }
 
-    public void editar(Vendedor vendedor, String Nombre) {
-        
-        Proveedor pro = dao.buscarProveedor(Nombre);
-        
-        vendedor.setCedulaProveedor(pro.getCedula());
+    public void editar(Vendedor vendedor) {
 
         dao.editarVendedor(vendedor);
 
@@ -86,6 +78,21 @@ public class BoVendedor {
 
             throw new NoExisteProveedor();
         }
+    }
+
+    public Vendedor buscarVendedor(String cedula) {
+
+        Vendedor ve = dao.buscarVendedor1(cedula);
+
+        if (ve == null) {
+            throw new NoExisteProveedor();
+        } else if (ve != null) {
+            return ve;
+        } else {
+
+            throw new NoExisteProveedor();
+        }
+
     }
 
     public ArrayList<Vendedor> listarVendedor() {

@@ -21,10 +21,9 @@ public class BodegaDAO extends Conexion {
 
     public boolean guardarBodega(Bodega bodega) {
         String consulta = "INSERT INTO bodega (codigo,"
-                + "nombre, direccion, telefono, producto_bodega)"
+                + "nombre, direccion, telefono)"
                 + "VALUES ('" + bodega.getCodigo() + "', '" + bodega.getNombre() + "', '"
-                + bodega.getDireccion() + "', '" + bodega.getTelefono() + "', '"
-                + bodega.getProductoBodega() + "' "
+                + bodega.getDireccion() + "', '" + bodega.getTelefono() + "' "
                 + ");";
         return super.ejecutar(consulta);
     }
@@ -32,8 +31,7 @@ public class BodegaDAO extends Conexion {
     public boolean editarBodega(Bodega bodega) {
         String consulta = "UPDATE bodega SET codigo='" + bodega.getCodigo() + "', "
                 + " nombre='" + bodega.getNombre() + "', direccion='" + bodega.getDireccion() + "', "
-                + " telefono='" + bodega.getTelefono() + "', "
-                + " producto_bodega='" + bodega.getProductoBodega() + "'"
+                + " telefono='" + bodega.getTelefono() + "'"
                 + " WHERE codigo='" + bodega.getCodigo() + "'";
         return super.ejecutar(consulta);
 
@@ -51,7 +49,6 @@ public class BodegaDAO extends Conexion {
                 bo.setNombre(resultadoDB.getString("nombre"));
                 bo.setDireccion(resultadoDB.getString("direccion"));
                 bo.setTelefono(resultadoDB.getString("telefono"));
-                bo.setProductoBodega(resultadoDB.getInt("producto_bodega"));
             }
         } catch (SQLException ex) {
             System.out.println("Fallo al consultar");
@@ -77,7 +74,6 @@ public class BodegaDAO extends Conexion {
                 bo.setNombre(resultadoDB.getString("nombre"));
                 bo.setDireccion(resultadoDB.getString("direccion"));
                 bo.setTelefono(resultadoDB.getString("telefono"));
-                bo.setProductoBodega(resultadoDB.getInt("producto_bodega"));
                 lista.add(bo);
             }
         } catch (SQLException ex) {

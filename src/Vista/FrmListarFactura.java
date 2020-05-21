@@ -5,9 +5,8 @@
  */
 package Vista;
 
-import Controlador.ControladorProducto;
-import Modelo.Bodega;
-import Modelo.Producto;
+import Controlador.CtlFactura;
+import Modelo.Factura;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,18 +14,35 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ALAN
  */
-public class FrmListarProducto extends javax.swing.JFrame {
+public class FrmListarFactura extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmListarProducto
+     * Creates new form FrmListarFactura
      */
-    
-    ControladorProducto controlador;
-    public FrmListarProducto() {
+    public static String cedula1;
+    CtlFactura controlador;
+
+    public FrmListarFactura() {
         initComponents();
-        controlador =  new ControladorProducto();
         setLocationRelativeTo(null);
+        controlador = new CtlFactura();
+        FrmFactura inicio = new FrmFactura();
+        cedula1 = inicio.cedula;
+
         listar();
+    }
+
+    public void listar() {
+        ArrayList<Factura> lista = controlador.listarFactura(cedula1);
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for (Factura factura : lista) {
+            modelo.addRow(new Object[]{factura.getCodigo(), factura.getCodigoVendedor(),
+                factura.getCedulaCliente(), factura.getFechaEmision()});
+        }
+
     }
 
     /**
@@ -46,13 +62,13 @@ public class FrmListarProducto extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "codigo", "nombre", "precio", "fecha vencimiento", "codigo de la categoria", "cantidad"
+                "codigo pedido", "codigo vendedor", "cedula cliente", "fecha emision"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -70,42 +86,29 @@ public class FrmListarProducto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FrmProducto evet = new FrmProducto();
-        evet.setVisible(true);
+        FrmFactura event = new FrmFactura();
+        event.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void listar() {
-        ArrayList<Producto> lista = controlador.listarProveedor();
-
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0);
-
-        for (Producto producto : lista) {
-            modelo.addRow(new Object[]{producto.getCodigo(), producto.getNombre(), producto.getPrecio(),
-            producto.getFechaVencimiento(), producto.getCategoria(), producto.getCantidad()});
-        }
-
-    }
 
     /**
      * @param args the command line arguments
@@ -124,20 +127,20 @@ public class FrmListarProducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmListarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmListarProducto().setVisible(true);
+                new FrmListarFactura().setVisible(true);
             }
         });
     }

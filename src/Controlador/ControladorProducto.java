@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * @author halan
  */
 public class ControladorProducto {
+
     BoProducto boProducto;
 
     public ControladorProducto() {
         boProducto = new BoProducto();
     }
-    
-    
-        public void guardarProducto(Producto producto, String categoria) throws YaExisteProducto{
+
+    public void guardarProducto(Producto producto, String categoria) throws YaExisteProducto {
 
         boProducto.guardar(producto, categoria);
     }
@@ -41,10 +41,10 @@ public class ControladorProducto {
 
         boProducto.eliminar(codigo);
     }
-    
-    public ArrayList<Producto> listarProveedor(){
-        
+
+    public ArrayList<Producto> listarProveedor() {
+
         return boProducto.listarProvedor();
     }
-    
+
 }

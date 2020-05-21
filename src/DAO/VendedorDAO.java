@@ -22,11 +22,10 @@ public class VendedorDAO extends Conexion {
 
     public boolean guardarVendedor(Vendedor vendedor) {
         String consulta = "INSERT INTO vendedor (codigo,"
-                + "cedula, nombre, apellido, direccion, telefono, cedula_Proveedor)"
+                + "cedula, nombre, apellido, direccion, telefono)"
                 + "VALUES ('" + vendedor.getCodigo() + "', '" + vendedor.getCedula() + "', '"
                 + vendedor.getNombre() + "', '" + vendedor.getApellido() + "', '"
-                + vendedor.getDireccion() + "', '" + vendedor.getTelefono() + "', '"
-                + vendedor.getCedulaProveedor() + "' "
+                + vendedor.getDireccion() + "', '" + vendedor.getTelefono() + "' "
                 + ");";
         return super.ejecutar(consulta);
     }
@@ -35,8 +34,7 @@ public class VendedorDAO extends Conexion {
         String consulta = "UPDATE vendedor SET codigo='" + vendedor.getCodigo() + "', "
                 + " cedula='" + vendedor.getCedula() + "', nombre='" + vendedor.getNombre() + "', "
                 + " apellido='" + vendedor.getApellido() + "', direccion='" + vendedor.getDireccion() + "', "
-                + " telefono='" + vendedor.getTelefono() + "', "
-                + " cedula_Proveedor='" + vendedor.getCedulaProveedor() + "'"
+                + " telefono='" + vendedor.getTelefono() + "'"
                 + " WHERE codigo='" + vendedor.getCodigo() + "'";
         return super.ejecutar(consulta);
 
@@ -44,7 +42,7 @@ public class VendedorDAO extends Conexion {
 
     public Vendedor buscarVendedor(int codigo) {
         String consulta = "select codigo, "
-                + " cedula, nombre, apellido, direccion, telefono, cedula_Proveedor from vendedor where codigo ='" + codigo + "'";
+                + " cedula, nombre, apellido, direccion, telefono from vendedor where codigo ='" + codigo + "'";
         Vendedor ve = new Vendedor();
         super.ejecutarRetorno(consulta);
         try {
@@ -56,7 +54,6 @@ public class VendedorDAO extends Conexion {
                 ve.setApellido(resultadoDB.getString("apellido"));
                 ve.setDireccion(resultadoDB.getString("direccion"));
                 ve.setTelefono(resultadoDB.getString("telefono"));
-                ve.setCedulaProveedor(resultadoDB.getString("cedula_Proveedor"));
             }
         } catch (SQLException ex) {
             System.out.println("Fallo al consultar");
@@ -84,7 +81,6 @@ public class VendedorDAO extends Conexion {
                 ve.setApellido(resultadoDB.getString("apellido"));
                 ve.setDireccion(resultadoDB.getString("direccion"));
                 ve.setTelefono(resultadoDB.getString("telefono"));
-                ve.setCedulaProveedor(resultadoDB.getString("cedula_Proveedor"));
                 lista.add(ve);
             }
         } catch (SQLException ex) {
@@ -93,7 +89,7 @@ public class VendedorDAO extends Conexion {
         }
         return lista;
     }
-    
+
     public Proveedor buscarProveedor(String nombre) {
         String consulta = "select cedula, "
                 + " nombre, apellido, direccion, telefono from proveedor where nombre ='" + nombre + "'";
@@ -114,5 +110,27 @@ public class VendedorDAO extends Conexion {
             return null;
         }
         return pro;
+    }
+
+    public Vendedor buscarVendedor1(String cedula) {
+        String consulta = "select codigo, "
+                + " cedula, nombre, apellido, direccion, telefono from vendedor where cedula ='" + cedula + "'";
+        Vendedor ve = new Vendedor();
+        super.ejecutarRetorno(consulta);
+        try {
+            if (resultadoDB.next()) {
+
+                ve.setCodigo(resultadoDB.getInt("codigo"));
+                ve.setCedula(resultadoDB.getString("cedula"));
+                ve.setNombre(resultadoDB.getString("nombre"));
+                ve.setApellido(resultadoDB.getString("apellido"));
+                ve.setDireccion(resultadoDB.getString("direccion"));
+                ve.setTelefono(resultadoDB.getString("telefono"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Fallo al consultar");
+            return null;
+        }
+        return ve;
     }
 }

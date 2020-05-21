@@ -25,6 +25,7 @@ public class FrmListarVendedor extends javax.swing.JFrame {
     public FrmListarVendedor() {
         initComponents();
         controlador = new CtlVendedor();
+        setLocationRelativeTo(null);
         listar();
     }
 
@@ -58,13 +59,13 @@ public class FrmListarVendedor extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "codigo", "cedula", "nombre", "apellido", "direccion", "telefono", "cedula del proveedor"
+                "codigo", "cedula", "nombre", "apellido", "direccion", "telefono"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
