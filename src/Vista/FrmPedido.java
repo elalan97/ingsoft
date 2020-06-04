@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.ControladorProducto;
 import Controlador.CtlCliente;
+import Controlador.CtlFactura;
 import Controlador.CtlPedido;
 import Controlador.CtlPedidoProducto;
 import DTO.pedidoProductoDTO;
@@ -31,6 +32,7 @@ public class FrmPedido extends javax.swing.JFrame {
     CtlCliente controlador1;
     ControladorProducto controlador2;
     CtlPedidoProducto controlador3;
+    CtlFactura controlador4;
 
     public FrmPedido() {
         initComponents();
@@ -38,6 +40,7 @@ public class FrmPedido extends javax.swing.JFrame {
         controlador1 = new CtlCliente();
         controlador2 = new ControladorProducto();
         controlador3 = new CtlPedidoProducto();
+        controlador4 = new CtlFactura();
         setLocationRelativeTo(null);
     }
 
@@ -353,9 +356,15 @@ public class FrmPedido extends javax.swing.JFrame {
 
         try {
 
-            controlador.guardarPedido(new Pedido(0, codigo, 0, estado, cedulaCliente));
-            limpiar();
-            JOptionPane.showMessageDialog(null, "se ha agregado con exito");
+            if (codigo == 0 || cedulaCliente.isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "llene los campos del codigo y busque un cliente");
+            } else {
+
+                controlador.guardarPedido(new Pedido(0, codigo, 0, estado, cedulaCliente));
+                limpiar();
+                JOptionPane.showMessageDialog(null, "se ha agregado con exito");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -409,6 +418,8 @@ public class FrmPedido extends javax.swing.JFrame {
             listar();
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -434,6 +445,8 @@ public class FrmPedido extends javax.swing.JFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
 
         controlador.eliminarPedido(codigo);
+        controlador4.eliminarFactura(codigo);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -454,9 +467,10 @@ public class FrmPedido extends javax.swing.JFrame {
             total = totalNeto + toltalIva;
 
             controlador3.guardarPedido(new PedidoProducto(0, idPedido, codigoProducto, total, cantidad));
-            controlador.editarPedido(new Pedido(0, idPedido, total, estado, cedulaCliente));
+            
             limpiar();
             listar();
+
             JOptionPane.showMessageDialog(null, "se ha guardado con exito");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -492,6 +506,17 @@ public class FrmPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+
+        int idPedido, total;
+        String estado, cedulaCliente;
+
+        idPedido = Integer.parseInt(txtCodigo.getText());
+        estado = "no despachado";
+        cedulaCliente = txtCedula.getText();
+        total = Integer.parseInt(txtTotal.getText());
+        
+        controlador.editarPedido(new Pedido(0, idPedido, total, estado, cedulaCliente));
+
         inicioVendedor evet = new inicioVendedor();
         evet.setVisible(true);
         dispose();

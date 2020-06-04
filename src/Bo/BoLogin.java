@@ -6,13 +6,17 @@
 package Bo;
 
 import DAO.LoginDAO;
+import Exepciones.NoExisteProveedor;
 import Exepciones.NoExisteUsuario;
 import Modelo.Login;
+import Modelo.Pedido;
 import Modelo.Proveedor;
+import Vista.FrmDetalleFacturaCliente;
 import Vista.FrmVendedor;
 
 import Vista.InicioAdmin;
 import Vista.inicioVendedor;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,11 +45,14 @@ public class BoLogin {
 
                 FrmVendedor event = new FrmVendedor();
                 event.setVisible(true);
-            }else if (log.getTipoUsuario().equals("vendedor")) {
+            } else if (log.getTipoUsuario().equals("vendedor")) {
+
                 inicioVendedor event = new inicioVendedor();
                 event.setVisible(true);
-            }else if(log.getTipoUsuario().equals("cliente")){
-                
+            } else if (log.getTipoUsuario().equals("cliente")) {
+
+                FrmDetalleFacturaCliente event = new FrmDetalleFacturaCliente();
+                event.setVisible(true);
             }
 
         } else {
@@ -55,7 +62,20 @@ public class BoLogin {
     }
 
     public void guardar(Login login) {
-        loginDAO.guardarBodega(login);
+        loginDAO.guardarUsuario(login);
+    }
+
+    public void eliminar(String cedula) {
+
+        boolean result = loginDAO.eliminarUsuario(cedula);
+        if (true) {
+
+            JOptionPane.showMessageDialog(null, "se ha eliminado correctamente");
+
+        } else {
+
+            throw new NoExisteProveedor();
+        }
     }
 
 }

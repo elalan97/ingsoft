@@ -90,4 +90,17 @@ public class BoPedido {
         return DAO.buscarPedidoDTO(codigo);
     }
 
+    public Pedido buscarPorCedula(String cedula) {
+
+        Pedido p = DAO.buscarPedidoPorCedulaCliente(cedula);
+
+        if (p != null) {
+            return p;
+        } else {
+
+            throw new NoExistePedido();
+        }
+
+    }
+
 }

@@ -64,9 +64,9 @@ public class FacturaDAO extends Conexion {
         return super.ejecutar(consulta);
     }
 
-    public ArrayList<Factura> listarFactura(int codigoVendedor) {
+    public ArrayList<Factura> listarFactura(int id) {
         ArrayList<Factura> lista = new ArrayList<>();
-        String consulta = "select * from factura where codigoVendedor = " + codigoVendedor + ";";
+        String consulta = "select * from factura where codigoVendedor = " + id + ";";
 
         super.ejecutarRetorno(consulta);
         try {

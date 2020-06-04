@@ -45,7 +45,7 @@ public class BodegaDAOTest {
     @Test
     public void testGuardarBodega() {
         System.out.println("guardarBodega");
-        Bodega bodega = new Bodega(1, 1, "sao", "Avenida tres puñaladas", "2345");
+        Bodega bodega = new Bodega(1, "sao", "Avenida tres puñaladas", "2345");
         BodegaDAO instance = new BodegaDAO();
         boolean expResult = true;
         boolean result = instance.guardarBodega(bodega);
@@ -63,7 +63,7 @@ public class BodegaDAOTest {
     @Test
     public void testEditarBodega() {
         System.out.println("editarBodega");
-        Bodega bodega = new Bodega(1, 1, "lol", "Avenida tres puñaladas", "12345");
+        Bodega bodega = new Bodega(1, "lol", "Avenida tres puñaladas", "12345");
         BodegaDAO instance = new BodegaDAO();
         boolean expResult = true;
         boolean result = instance.editarBodega(bodega);

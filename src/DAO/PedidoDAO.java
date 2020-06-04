@@ -40,7 +40,6 @@ public class PedidoDAO extends Conexion {
 
     }
 
-
     public Pedido buscarPedido(int codigo) {
         String consulta = "select id, codigo, "
                 + " estado, cedulaCliente from pedido where codigo ='" + codigo + "'";
@@ -111,4 +110,24 @@ public class PedidoDAO extends Conexion {
         return p;
     }
 
+    public Pedido buscarPedidoPorCedulaCliente(String cedula) {
+        String consulta = "select id, codigo, "
+                + " estado, cedulaCliente from pedido where cedulaCliente ='" + cedula + "'";
+        Pedido p = new Pedido();
+        super.ejecutarRetorno(consulta);
+        try {
+            if (resultadoDB.next()) {
+
+                p.setId(resultadoDB.getInt("id"));
+                p.setCodigo(resultadoDB.getInt("codigo"));
+                p.setEstado(resultadoDB.getString("estado"));
+                p.setCedulaCliente(resultadoDB.getString("cedulaCliente"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Fallo al consultar");
+            return null;
+        }
+        return p;
+    }
 }

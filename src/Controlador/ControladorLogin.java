@@ -30,4 +30,9 @@ public class ControladorLogin {
         
         boLogin.guardar(login);
     }
+    
+    public void eliminarUsuario(String cedula){
+        
+        boLogin.eliminar(cedula);
+    }
 }

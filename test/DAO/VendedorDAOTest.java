@@ -46,7 +46,7 @@ public class VendedorDAOTest {
     @Test
     public void testGuardarVendedor() {
         System.out.println("guardarVendedor");
-        Vendedor vendedor = new Vendedor(1, "123", "que mira", "sapo", "lol", "1234", "1");
+        Vendedor vendedor = new Vendedor(0, 1, "que mira", "sapo", "lol", "1234", "1");
         VendedorDAO instance = new VendedorDAO();
         boolean expResult = true;
         boolean result = instance.guardarVendedor(vendedor);
@@ -63,7 +63,7 @@ public class VendedorDAOTest {
     @Test
     public void testEditarVendedor() {
         System.out.println("editarVendedor");
-        Vendedor vendedor = new Vendedor(1, "123", "halan", "gonzalez", "lol", "1234", "1");
+        Vendedor vendedor = new Vendedor(0, 1, "halan", "gonzalez", "lol", "1234", "1");
         VendedorDAO instance = new VendedorDAO();
         boolean expResult = true;
         boolean result = instance.editarVendedor(vendedor);

@@ -281,6 +281,7 @@ public class FrmCliente extends javax.swing.JFrame {
         }else{
             try{
                 controlador.eliminarCliente(cedula);
+                controlador1.eliminarUsuario(cedula);
                 JOptionPane.showMessageDialog(null, "se elimino correctamente");
         
                 limpiar();

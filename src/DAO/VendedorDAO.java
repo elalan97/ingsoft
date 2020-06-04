@@ -113,13 +113,14 @@ public class VendedorDAO extends Conexion {
     }
 
     public Vendedor buscarVendedor1(String cedula) {
-        String consulta = "select codigo, "
-                + " cedula, nombre, apellido, direccion, telefono from vendedor where cedula ='" + cedula + "'";
+        String consulta = "select id,"
+                + "codigo, cedula, nombre, apellido, direccion, telefono from vendedor where cedula ='" + cedula + "'";
         Vendedor ve = new Vendedor();
         super.ejecutarRetorno(consulta);
         try {
             if (resultadoDB.next()) {
 
+                ve.setId(resultadoDB.getInt("id"));
                 ve.setCodigo(resultadoDB.getInt("codigo"));
                 ve.setCedula(resultadoDB.getString("cedula"));
                 ve.setNombre(resultadoDB.getString("nombre"));

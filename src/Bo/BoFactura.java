@@ -29,18 +29,22 @@ public class BoFactura {
     public BoFactura() {
         DAO = new FacturaDAO();
         DAO1 = new PedidoDAO();
-        DAO2 =  new VendedorDAO();
+        DAO2 = new VendedorDAO();
     }
 
     public void guardar(Factura factura) {
 
+        int id;
+        
+        
+        
         Factura fac = DAO.buscarFactura(factura.getCodigo());
         Pedido pe = DAO1.buscarPedido(factura.getCodigo());
 
         if (fac != null) {
 
             if (fac.getFechaEmision() == null) {
-                int id = pe.getId();
+                id = pe.getId();
                 DAO.guardarFactura(factura, id);
             } else {
                 throw new YaExisteCliente();
@@ -77,7 +81,6 @@ public class BoFactura {
 
         Pedido pe = DAO1.buscarPedido(codigo);
         int id = pe.getId();
-        System.out.println(id);
         boolean result = DAO.eliminarFactura(id);
         if (true) {
 
@@ -90,9 +93,9 @@ public class BoFactura {
     }
 
     public ArrayList<Factura> listar(String codigoVendedor) {
-        
+
         Vendedor ve = DAO2.buscarVendedor1(codigoVendedor);
-        return DAO.listarFactura(ve.getCodigo());
+        return DAO.listarFactura(ve.getId());
     }
 
 }

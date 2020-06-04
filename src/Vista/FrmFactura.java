@@ -42,13 +42,23 @@ public class FrmFactura extends javax.swing.JFrame {
 
     }
 
+    public void limpiar() {
+
+        txtCedulaC.setText("");
+        txtNombreCliente.setText("");
+        txtTotal.setText("");
+        txtCodigoP.setText("");
+        txtFecha.setText("");
+
+    }
+
     public void buscar() {
 
         Vendedor v = controlador1.buscarVendedor(cedula);
 
         txtCedulaV.setText(v.getCedula());
         txtNombreV.setText(v.getNombre());
-        txtCodigoV.setText(v.getCodigo() + "");
+        txtCodigoV.setText(v.getId() + "");
 
         txtCedulaC.setEnabled(false);
         txtCedulaV.setEnabled(false);
@@ -313,6 +323,7 @@ public class FrmFactura extends javax.swing.JFrame {
 
             controlador2.guardarFactura(new Factura(codigo, codigoVendedor, cedulaCliente, fechaEmision));
             JOptionPane.showMessageDialog(null, "Se ha ingresado correctamente");
+            limpiar();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e);
@@ -348,6 +359,7 @@ public class FrmFactura extends javax.swing.JFrame {
 
             controlador2.editarFactura(new Factura(codigo, codigoVendedor, cedulaCliente, fechaEmision));
             JOptionPane.showMessageDialog(null, "Se ha ingresado correctamente");
+            limpiar();
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e);

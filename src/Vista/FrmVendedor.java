@@ -220,11 +220,15 @@ public class FrmVendedor extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int codigo = Integer.parseInt(txtCodigo.getText());
         
+        
         if(txtCodigo.equals("")){
             JOptionPane.showMessageDialog(null, "por favor busque un vendedor con codigo");
         }else{
             try{
+                Vendedor ve = controlador.buscarCliente(codigo);
+                controlador1.eliminarUsuario(ve.getCedula());
                 controlador.eliminarCliente(codigo);
+                
                 JOptionPane.showMessageDialog(null, "Se a eliminado corretamente");
                 limpiar();
             }catch (Exception e) {

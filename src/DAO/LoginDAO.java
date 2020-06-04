@@ -38,12 +38,17 @@ public class LoginDAO extends Conexion {
         return login;
     }
 
-    public boolean guardarBodega(Login login) {
+    public boolean guardarUsuario(Login login) {
         String consulta = "INSERT INTO login (nombreUsuario,"
                 + "contraseña, tipoUsuario)"
                 + "VALUES ('" + login.getNombreUsuario() + "', '" + login.getContraseña() + "', '"
                 + login.getTipoUsuario() + "' "
                 + ");";
+        return super.ejecutar(consulta);
+    }
+
+    public boolean eliminarUsuario(String cedula) {
+        String consulta = "DELETE FROM login where contraseña = " + cedula + ";";
         return super.ejecutar(consulta);
     }
 

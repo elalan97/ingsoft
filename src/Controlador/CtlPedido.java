@@ -54,4 +54,8 @@ public class CtlPedido {
     public PedidoDTO buscarPedidoDTO(int codigo) throws NoExistePedido {
         return BO.buscarPedidoDTO(codigo);
     }
+
+    public Pedido buscarPedidoPorCedula(String cedula) throws NoExistePedido {
+        return BO.buscarPorCedula(cedula);
+    }
 }

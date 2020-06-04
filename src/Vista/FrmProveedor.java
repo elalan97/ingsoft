@@ -26,7 +26,7 @@ public class FrmProveedor extends javax.swing.JFrame {
     public FrmProveedor() {
         initComponents();
         controlador = new ControladorProveedor();
-        controlador1 =  new ControladorLogin();
+        controlador1 = new ControladorLogin();
         setLocationRelativeTo(null);
     }
 
@@ -242,12 +242,12 @@ public class FrmProveedor extends javax.swing.JFrame {
 
                 cedula = txtCedula.getText();
                 Proveedor pro = controlador.buscarProveedor(cedula);
-                
+
                 TxtApellido.setText(pro.getApellido());
                 TxtDireccion.setText(pro.getDireccion());
                 txtNombre.setText(pro.getNombre());
                 txtTelefono.setText(pro.getTelefono());
-                
+
             }
 
         } catch (Exception e) {
@@ -289,13 +289,14 @@ public class FrmProveedor extends javax.swing.JFrame {
             if (txtCedula.equals("")) {
                 JOptionPane.showConfirmDialog(null, "por favor busque por la cedula");
             } else {
-
-                cedula = txtCedula.getText();
                 controlador.eliminarProveedor(cedula);
+                controlador1.eliminarUsuario(cedula);
                 vaciarCampos();
             }
 
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -306,14 +307,15 @@ public class FrmProveedor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public void vaciarCampos(){
-        
+    public void vaciarCampos() {
+
         TxtApellido.setText("");
         TxtDireccion.setText("");
         txtCedula.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
     }
+
     /**
      * @param args the command line arguments
      */
