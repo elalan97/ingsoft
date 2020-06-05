@@ -6,10 +6,14 @@
 package Bo;
 
 import DAO.PedidoDAO;
+import DAO.PedidoProductoDAO;
+import DAO.ProductoDAO;
 import DTO.PedidoDTO;
+import DTO.pedidoProductoDTO;
 import Exepciones.NoExistePedido;
 import Exepciones.YaExistePedido;
 import Modelo.Pedido;
+import Modelo.Producto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,10 +24,14 @@ import javax.swing.JOptionPane;
 public class BoPedido {
 
     PedidoDAO DAO;
+    PedidoProductoDAO DAO2;
+    ProductoDAO DAO3;
 
     public BoPedido() {
 
         DAO = new PedidoDAO();
+        DAO2 = new PedidoProductoDAO();
+        DAO3 = new ProductoDAO();
     }
 
     public void guardar(Pedido pedido) {
@@ -100,6 +108,35 @@ public class BoPedido {
 
             throw new NoExistePedido();
         }
+
+    }
+
+    public void editar1(Pedido pedido) {
+
+        int total = 0;
+        Pedido p = DAO.buscarPedido(pedido.getCodigo());
+        ArrayList<pedidoProductoDTO> list = DAO2.listarCarrito(p.getId());
+        if (p == null) {
+
+            throw new NoExistePedido();
+
+        }
+        
+        for (int i = 0; i < list.size(); i++) {
+            
+            Producto pro = DAO3.buscarProducto(list.get(i).getCodigo());
+            
+            total = pro.getCantidad() - list.get(i).getCantidad();
+            
+            DAO3.editarProducto(new Producto(pro.getNombre(), pro.getFechaVencimiento(), pro.getCategoria(), pro.getPrecio(), 
+                    pro.getCodigo(), total));
+            
+            
+            
+        }
+
+        pedido.setId(p.getId());
+        DAO.editarPedido(pedido);
 
     }
 

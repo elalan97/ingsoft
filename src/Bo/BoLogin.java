@@ -11,6 +11,7 @@ import Exepciones.NoExisteUsuario;
 import Modelo.Login;
 import Modelo.Pedido;
 import Modelo.Proveedor;
+import Vista.FrmDespachoPedido;
 import Vista.FrmDetalleFacturaCliente;
 import Vista.FrmVendedor;
 
@@ -43,7 +44,7 @@ public class BoLogin {
 
             } else if (log.getTipoUsuario().equals("proveedor")) {
 
-                FrmVendedor event = new FrmVendedor();
+                FrmDespachoPedido event = new FrmDespachoPedido();
                 event.setVisible(true);
             } else if (log.getTipoUsuario().equals("vendedor")) {
 
